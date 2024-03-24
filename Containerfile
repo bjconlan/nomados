@@ -1,5 +1,6 @@
-# podman run --rm -it -v "$PWD":/tmp/build:z -w /tmp/build golang:1.22-bookworm /bin/bash
+## FIXME convert this to dev container (dont make an image)
 
+# podman run --rm -it -v "$PWD":/tmp/build:z -w /tmp/build golang:1.22-bookworm /bin/bash
 FROM docker.io/golang:1.22-bookworm AS sdhcp-build
 WORKDIR /tmp/build
 RUN --mount=type=bind,target=/tmp/build,source=./3rdparty/sdhcp,rw=true make \
@@ -17,10 +18,11 @@ RUN --mount=type=bind,target=/tmp/build,source=./3rdparty/linux,rw=true make all
 
 FROM docker.io/golang:1.22-bookworm AS nomad-build
 WORKDIR /tmp/build
-RUN --mount=type=bind,target=/tmp/build,source=./3rdparty/nomad,rw=true go build
+RUN --mount=type=bind,target=/tmp/build,source=./3rdparty/nomad,rw=true make deps dev
 
 # FROM docker.io/golang:1.22-bookworm
-# COPY --from=sdhcp-build /tmp/build/3rdparty/sdhcp/sdhcp /tmp/sdhcp
-# COPY --from=linux-build /tmp/build/3rdparty/
+# COPY --from=sdhcp-build /tmp/build/sdhcp /tmp/sdhcp
+# COPY --from=linux-build /tmp/build/*
+# COPY --from=nomad-build /tmp/build/bin/nomad
 # WORKDIR /tmp/build
 
