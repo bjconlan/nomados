@@ -1,0 +1,13 @@
+[submodule "3rdparty/linux"]
+	path = 3rdparty/linux
+	url = git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+	shallow = true
+[submodule "3rdparty/nomad"]
+	path = 3rdparty/nomad
+	url = https://github.com/hashicorp/nomad.git
+	branch = release/1.7.x
+	shallow = true
+[submodule "3rdparty/sdhcp"]
+	path = 3rdparty/sdhcp
+	url = git://git.2f30.org/sdhcp
+	shallow = true
