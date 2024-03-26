@@ -1,0 +1,18 @@
+#!/bin/sh
+mount -t devtmpfs devtmpfs /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /tmp
+[ -d /proc/sys/fs/binfmt_misc ] && mount -t binfmt_misc binfmt_misc /proc/sys/fs/binfmt_misc
+[ -d /sys/fs/cgroup ] && mount -t cgroup2 cgroup2 /sys/fs/cgroup
+[ -d /sys/fs/selinux ] && mount -t selinuxfs selinuxfs /sys/fs/selinux
+[ -d /sys/kernel/config ] && mount -t configfs configs /sys/kernel/config
+[ -d /sys/kernel/debug ] && mount -t debugfs debugfs /sys/kernel/debug
+[ -d /sys/kernel/mm/hugepages ] && mkdir -p /dev/hugepages && mount -t hugetlbfs hugetlbfs /dev/hugepages
+[ -d /sys/kernel/tracing ] && mount -t tracefs tracefs /sys/kernel/tracing
+
+hostname nomados
+ifup -a
+/sbin/sdhcp
+
+exec /bin/sh
