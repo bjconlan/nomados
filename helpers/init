@@ -12,7 +12,11 @@ mount -t tmpfs tmpfs /tmp
 [ -d /sys/kernel/tracing ] && mount -t tracefs tracefs /sys/kernel/tracing
 
 hostname nomados
-ifup -a
+ifup lo
+ifup eth0
 /sbin/sdhcp
+
+mkdir -p /var/log /var/lib/nomad/data /var/lib/nomad/client
+# /usr/bin/nomad agent -dev -config=/etc/nomad/init.json >/var/log/nomad.log 2>/var/log/nomad.err&
 
 exec /bin/sh

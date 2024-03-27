@@ -3,8 +3,10 @@ currently just getting reproducable minimal build up based on work by:
 https://medium.com/@ThyCrow/compiling-the-linux-kernel-and-creating-a-bootable-iso-from-it-6afb8d23ba22
 https://gist.github.com/bluedragon1221/a58b0e1ed4492b44aa530f4db0ffef85
 
-qemu-system-x86_64 -kernel dep/linux/arch/x86_64/boot/bzImage -initrd initramfs.cpio -append "console=ttyS" -nographic -serial mon:stdio
-qemu-system-x86_64 -drive format=raw,file=./build/nomados.raw
+qemu-system-x86_64 -kernel dep/linux/arch/x86_64/boot/bzImage -initrd initramfs.cpio -append "console=ttyS" -nographic -serial mon:stdio -m 512M
+qemu-system-x86_64 -m 512M -drive format=raw,file=./build/nomados.raw
+
+currently fails to run `nomad agent -dev` due to tmpfs mount issues
 
 # Nomad Init
 An experiment after Hashiconf Digital 2020 for building a minimal Linux Nomad agent. This build has been developed and tested on Fedora 32, and copies some local dependencies into the qcow image during packaging.  Qemu-img must be installed and the nbd kernel module loaded to mount the qcow2 image created during `buildimg.sh`.  Accompanying blog post on Medium: https://medium.com/@boeroboy/nomad-vs-systemd-e0db80d34e8a

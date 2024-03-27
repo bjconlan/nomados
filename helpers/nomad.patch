@@ -1,0 +1,13 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index 5ae54b8..63291d5 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -13,7 +13,7 @@ GIT_COMMIT_FLAG = $(GO_MODULE)/version.GitCommit=$(GIT_COMMIT)$(GIT_DIRTY)
+ BUILD_DATE ?= $(shell TZ=UTC0 git show -s --format=%cd --date=format-local:'%Y-%m-%dT%H:%M:%SZ' HEAD)
+ BUILD_DATE_FLAG = $(GO_MODULE)/version.BuildDate=$(BUILD_DATE)
+ 
+-GO_LDFLAGS = -X $(GIT_COMMIT_FLAG) -X $(BUILD_DATE_FLAG)
++GO_LDFLAGS = -X $(GIT_COMMIT_FLAG) -X $(BUILD_DATE_FLAG) -extldflags=-static
+ 
+ GOPATH := $(shell go env GOPATH)
+ 
