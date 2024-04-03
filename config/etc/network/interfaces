@@ -3,6 +3,6 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-address 172.17.4.105
-netmask 255.255.0.0
-gateway 172.17.1.10
+address 10.0.2.15
+netmask 255.0.0.0
+gateway 10.0.2.2
