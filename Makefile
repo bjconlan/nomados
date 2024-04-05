@@ -25,7 +25,7 @@ build/dep/linux/arch/x86_64/boot/bzImage:
 	-git clone --depth 1 --branch v6.8.2 https://github.com/gregkh/linux.git build/dep/linux
 	-git clone --depth 1 --branch 6.8.2-1420 https://github.com/clearlinux-pkgs/linux.git build/dep/clearlinux-linux
 	cd build/dep/linux \
-	   && git apply ../clearlinux-linux/0101-i8042-decrease-debug-message-level-to-info.patch \
+	 && git apply ../clearlinux-linux/0101-i8042-decrease-debug-message-level-to-info.patch \
 	    ../clearlinux-linux/0102-increase-the-ext4-default-commit-age.patch \
 	    ../clearlinux-linux/0108-smpboot-reuse-timer-calibration.patch \
 	    ../clearlinux-linux/0112-init-wait-for-partition-and-retry-scan.patch \
@@ -68,7 +68,8 @@ build/dep/sdhcp/sdhcp:
 
 build/dep/nomad/bin/nomad:
 	-git clone --depth 1 --branch v1.7.6 https://github.com/hashicorp/nomad.git build/dep/nomad
-	cd build/dep/nomad   ../../../helpers/nomad.patch
+	cd build/dep/nomad \
+	 && git apply  ../../../helpers/nomad.patch
 	make -C build/dep/nomad deps
 	make -C build/dep/nomad dev
 
