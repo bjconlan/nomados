@@ -22,8 +22,8 @@ build/initramfs.cpio: build/dep/linux/arch/x86_64/boot/bzImage build/dep/busybox
 	 && find . | cpio -o -H newc | zstd > ../initramfs.cpio
 
 build/dep/linux/arch/x86_64/boot/bzImage:
-	-git clone --depth 1 --branch v6.8.2 https://github.com/gregkh/linux.git build/dep/linux
-	-git clone --depth 1 --branch 6.8.2-1420 https://github.com/clearlinux-pkgs/linux.git build/dep/clearlinux-linux
+	-git clone --depth 1 --branch v6.8.6 https://github.com/gregkh/linux.git build/dep/linux
+	-git clone --depth 1 --branch 6.8.6-1426 https://github.com/clearlinux-pkgs/linux.git build/dep/clearlinux-linux
 	cd build/dep/linux \
 	 && git apply ../clearlinux-linux/0101-i8042-decrease-debug-message-level-to-info.patch \
 	    ../clearlinux-linux/0102-increase-the-ext4-default-commit-age.patch \
